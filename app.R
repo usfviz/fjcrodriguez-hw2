@@ -7,9 +7,9 @@
 #    http://shiny.rstudio.com/
 #
 
-require(shiny)
-require(ggplot2)
-require(plotly)
+library(shiny)
+library(ggplot2)
+library(plotly)
 
 shiny.version <- unlist(packageVersion('shiny') )[1]
 
