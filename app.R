@@ -7,9 +7,19 @@
 #    http://shiny.rstudio.com/
 #
 
-library(shiny)
-library(ggplot2)
-library(plotly)
+require(shiny)
+require(ggplot2)
+require(plotly)
+
+shiny.version <- unlist(packageVersion('shiny') )[1]
+
+if (shiny.version < 1) {
+  stop("Program requires Shiny version 1.0.1 or higher - Franco")
+}
+
+if ("plotly" %in% installed.packages() == FALSE) {
+  stop("plotly package must be installed to run app - Franco")
+}
 
 world.data <- read.csv("world_data.csv")
 world.data <- world.data[world.data$region!="",]
@@ -97,5 +107,3 @@ server <- function(input, output) {
 
 # Run the application 
 shinyApp(ui = ui, server = server)
-
-
