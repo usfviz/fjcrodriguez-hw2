@@ -11,14 +11,27 @@ library(shiny)
 library(ggplot2)
 library(plotly)
 
-shiny.version <- unlist(packageVersion('shiny') )[1]
+shiny.version.str <- packageVersion('shiny')
+shiny.version <- unlist(shiny.version.str )
+shiny.v <- shiny.version[1] + shiny.version[2] * 0.1 + shiny.version[3] * 0.01 
 
-if (shiny.version < 1) {
-  stop("Program requires Shiny version 1.0.1 or higher - Franco.\nRun 'install.packages('shiny')' in your R console")
+if (shiny.v < 1.01) {
+  stop(paste0(c("Program requires Shiny version 4.5.6 or higher, you have ", paste0(shiny.version.str,sep="."),"\nRun 'install.packages('shiny')' in your R console to update your version\n\n\t- Franco", collapse="")))
 }
+
+plotly.version.str <- packageVersion('plotly')
+plotly.version <- unlist(plotly.version.str )
+plotly.v <- plotly.version[1] + plotly.version[2] * 0.1 + plotly.version[3] * 0.01 
+
 
 if ("plotly" %in% installed.packages() == FALSE) {
   stop("plotly package must be installed to run app - Franco\nRun 'install.packages('plotly')' in your R console")
+}
+
+
+
+if (plotly.v < 4.56) {
+  stop(paste0(c("Program requires plotly version 4.5.6 or higher, you have ", paste0(plotly.version.str,sep="."),"\nRun 'install.packages('plotly')' in your R console to update your version\n\n\t- Franco", collapse="")))
 }
 
 world.data <- read.csv("world_data.csv")
