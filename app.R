@@ -14,11 +14,11 @@ library(plotly)
 shiny.version <- unlist(packageVersion('shiny') )[1]
 
 if (shiny.version < 1) {
-  stop("Program requires Shiny version 1.0.1 or higher - Franco")
+  stop("Program requires Shiny version 1.0.1 or higher - Franco.\nRun 'install.packages('shiny')' in your R console")
 }
 
 if ("plotly" %in% installed.packages() == FALSE) {
-  stop("plotly package must be installed to run app - Franco")
+  stop("plotly package must be installed to run app - Franco\nRun 'install.packages('plotly')' in your R console")
 }
 
 world.data <- read.csv("world_data.csv")
